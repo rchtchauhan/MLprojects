@@ -5,6 +5,7 @@ import numpy as np
 from src.exception import CustomException
 import dill
 from sklearn.metrics import r2_score
+from src.pipeline.predict_pipeline import CustomException
 
 def save_object(file_path,obj):
     try:
@@ -35,3 +36,12 @@ def evaluate_models(x_train,y_train,x_test,y_test,models):
         return report
     except Exception as e:
         raise CustomException(e,sys)
+    
+def load_object(file_path):
+    try:
+        with open(file_path,'rb') as file_obj:
+            return dill.load(file_obj)
+        
+    except Exception as e:
+        raise CustomException(e,sys)
+    

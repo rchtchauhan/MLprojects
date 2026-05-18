@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Student Performance Predictor</title>
+
+```
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #e3f2fd, #ffffff);
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 50%;
+        margin: 40px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #1565c0;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #0d47a1;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        outline: none;
+    }
+
+    .form-control:focus {
+        border-color: #1976d2;
+        box-shadow: 0 0 5px rgba(25,118,210,0.3);
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        background: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: #0d47a1;
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 15px;
+        text-align: center;
+        background: #e3f2fd;
+        border-left: 5px solid #1976d2;
+        border-radius: 8px;
+        font-size: 18px;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<h1>Student Exam Performance</h1>
+<p style="text-align:center; color: gray;">
+    Predict your Maths score using ML model
+</p>
+
+<form action="{{ url_for('predict_datapoint')}}" method="post">
+
+    <label class="form-label">Gender</label>
+    <select class="form-control" name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+
+    <label class="form-label">Race or Ethnicity</label>
+    <select class="form-control" name="race_ethnicity" required>
+        <option value="">Select Ethnicity</option>
+        <option value="group A">Group A</option>
+        <option value="group B">Group B</option>
+        <option value="group C">Group C</option>
+        <option value="group D">Group D</option>
+        <option value="group E">Group E</option>
+    </select>
+
+    <label class="form-label">Parental Education</label>
+    <select class="form-control" name="parental_level_of_education" required>
+        <option value="">Select Education</option>
+        <option value="associate's degree">Associate's</option>
+        <option value="bachelor's degree">Bachelor's</option>
+        <option value="high school">High School</option>
+        <option value="master's degree">Master's</option>
+        <option value="some college">Some College</option>
+        <option value="some high school">Some High School</option>
+    </select>
+
+    <label class="form-label">Lunch Type</label>
+    <select class="form-control" name="lunch" required>
+        <option value="">Select Lunch Type</option>
+        <option value="standard">Standard</option>
+        <option value="free/reduced">Free/Reduced</option>
+    </select>
+
+    <label class="form-label">Test Preparation</label>
+    <select class="form-control" name="test_preparation_course" required>
+        <option value="">Select Option</option>
+        <option value="none">None</option>
+        <option value="completed">Completed</option>
+    </select>
+
+    <label class="form-label">Reading Score</label>
+    <input class="form-control" type="number" name="reading_score" min="0" max="100">
+
+    <label class="form-label">Writing Score</label>
+    <input class="form-control" type="number" name="writing_score" min="0" max="100">
+
+    <button class="btn" type="submit">
+        Predict Maths Score
+    </button>
+
+</form>
+
+{% if results %}
+<div class="result">
+    🎯 Predicted Score: <b>{{ results }}</b>
+</div>
+{% endif %}
+```
+
+</div>
+
+</body>
+</html>
