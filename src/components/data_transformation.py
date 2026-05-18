@@ -22,7 +22,7 @@ class DataTransformation:
 
     def get_data_transformation_object(self):
         try: 
-            numerical_column=  ['writing_score', 'reading_score']
+            numerical_column=  ['writing_score','reading_score']
             categorical_column = ['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch', 'test_preparation_course']
 
             num_pipleline = Pipeline(
@@ -31,15 +31,6 @@ class DataTransformation:
                     ("scalar",StandardScaler())
                 ]
             )
-
-            # cat_pipleline = Pipeline(
-            #     steps=[
-            #         ("imputer",SimpleImputer(strategy="most_frequent")),
-            #         ("scalar",StandardScaler()),
-            #         ("one_hot_encoder",OneHotEncoder()),
-            #         ("scalar",StandardScaler())
-            #     ]
-            # )
             cat_pipleline = Pipeline(
                steps=[
                 ("imputer",SimpleImputer(strategy="most_frequent")),
